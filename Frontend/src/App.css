@@ -65,3 +65,30 @@ main .right {
 main .left .review:hover {
   background-color: rgb(137, 137, 234);
 }
+
+
+
+.spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #00bcd4;
+  font-weight: bold;
+  height: 100%;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.3;
+  }
+}

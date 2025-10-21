@@ -5,17 +5,29 @@ import prism from "prismjs"
 import axios from 'axios'
 import Markdown from "react-markdown"
 import './App.css'
+import { use } from 'react'
 
 function App() {
   const [review, setReview] = useState(``)
   const [code, setCode] = useState(`//Write your code here and click the review button for detail review`)
+  const [loading, setLoading] = useState(false)
   useEffect(() => {
     prism.highlightAll()
   })
 
   async function reviewCode() {
-    const responce = await axios.post('https://codereviewer-backend-p96t.onrender.com/ai/get-review', { code })
-    setReview(responce.data)
+    // const responce = await axios.post('https://codereviewer-backend-p96t.onrender.com/ai/get-review', { code })
+    // setReview(responce.data)
+    setLoading(true)
+    try {
+      const response = await axios.post('https://codereviewer-backend-p96t.onrender.com/ai/get-review', { code })
+      setReview(response.data)
+    } catch (error) {
+      console.log(error)
+      setReview("⚠️ Error fetching review. Please try again.")
+    } finally {
+      setLoading(false)
+    }
   }
   return (
     <>
@@ -37,10 +49,16 @@ function App() {
               }}
             />
           </div>
-          <div className="review" onClick={reviewCode}>Review</div>
+          <div className="review" onClick={reviewCode}>
+            {loading ? "Reviewing..." : "Review"}
+          </div>
         </div>
         <div className="right">
-          <Markdown>{review}</Markdown>
+          {loading ? (
+            <div className="spinner">Loading...</div>
+          ) : (
+            <Markdown>{review}</Markdown>
+          )}
         </div>
       </main>
     </>
