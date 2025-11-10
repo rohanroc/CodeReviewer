@@ -7,7 +7,8 @@ import Markdown from "react-markdown"
 
 function App() {
   const [review, setReview] = useState(``)
-  const [code, setCode] = useState(`// Write your code here and click the "Review" button for a detailed AI review.`)
+  const [code, setCode] = useState(`// Write your code here and click the "Review" button for a detailed AI review.
+`)
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
@@ -51,7 +52,7 @@ function App() {
               <span className="w-3 h-3 bg-yellow-500 rounded-full"></span>
               <span className="w-3 h-3 bg-green-500 rounded-full"></span>
             </div>
-            <p className="text-sm text-gray-400">JavaScript Editor</p>
+            <p className="text-sm text-gray-400">Code Editor</p>
           </div>
 
           <div className="p-4 sm:p-6 flex-1 overflow-auto">
@@ -76,7 +77,7 @@ function App() {
               disabled={loading}
               className={`px-8 py-2 text-base font-medium rounded-full transition-all duration-300 ${loading
                 ? "bg-gray-700 cursor-not-allowed text-gray-400"
-                : "bg-gradient-to-r from-cyan-500 to-purple-500 hover:shadow-lg hover:shadow-cyan-500/30"
+                : "bg-gradient-to-r from-cyan-500 to-purple-500 hover:shadow-lg hover:shadow-cyan-500/30 cursor-pointer"
                 }`}
             >
               {loading ? "Reviewing..." : "Review"}
@@ -85,7 +86,7 @@ function App() {
         </div>
 
         {/* Right Side – Review Output */}
-        <div className="bg-[#1a1a1a] rounded-2xl shadow-xl border border-gray-800 p-6 overflow-y-auto">
+        <div className="bg-[#1a1a1a] rounded-2xl shadow-xl border border-gray-800 p-6 overflow-auto">
           <h2 className="text-lg font-semibold mb-4 text-gray-300">
             AI Review Result
           </h2>
@@ -101,6 +102,7 @@ function App() {
           )}
         </div>
       </main>
+      <hr className='my-5' />
       <footer className="py-6 text-center border-t border-gray-800 text-gray-500 text-sm">
         © {new Date().getFullYear()} CodeReviewer.AI — Built with 💙 By <a href="https://github.com/rohanroc" >Arijit</a>
       </footer>
