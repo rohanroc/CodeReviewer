@@ -17,8 +17,8 @@ It provides an interactive **code editor** with syntax highlighting powered by *
 
 ---
 ## Images
-
-![alt text](image.png)
+![alt text](image-2.png)
+![alt text](image-1.png)
 
 
 ---
